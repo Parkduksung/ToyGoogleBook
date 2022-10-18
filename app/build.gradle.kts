@@ -38,10 +38,13 @@ android {
 }
 
 dependencies {
-
     implementation(project(":core-ui"))
     implementation(project(":core-navigation"))
     implementation(project(":core-common"))
+    implementation(project(":core-data"))
+    implementation(project(":core-network"))
+
+    implementation(project(":feature_googlebook_list"))
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
