@@ -9,9 +9,7 @@ interface GoogleBookApi {
     companion object {
 
         const val URL_BASE = "https://www.googleapis.com/"
-
         const val URL_SEARCH_BOOKS = "books/v1/volumes"
-        const val DEFAULT_MAX_RESULTS = 20
         const val DEFAULT_PROJECTION = "lite"
 
     }
@@ -22,7 +20,7 @@ interface GoogleBookApi {
     @GET(URL_SEARCH_BOOKS)
     suspend fun getSearchBooks(
         @Query("q") q: String,
-        @Query("maxResults") maxResults: Int = DEFAULT_MAX_RESULTS,
+        @Query("maxResults") maxResults: Int,
         @Query("startIndex") startIndex: Int,
         @Query("projection") projection: String = DEFAULT_PROJECTION
     ): GoogleBookResponse

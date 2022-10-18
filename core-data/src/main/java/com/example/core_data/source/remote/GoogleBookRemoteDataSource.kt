@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface GoogleBookRemoteDataSource {
 
-   fun getSearchBookResponse(q : String, startIndex : Int) : Flow<GoogleBookResponse>
+   fun getSearchBookResponse(q : String, startIndex : Int, maxResult : Int) : Flow<GoogleBookResponse>
 }

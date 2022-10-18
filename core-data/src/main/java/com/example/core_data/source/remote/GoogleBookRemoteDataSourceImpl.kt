@@ -11,6 +11,6 @@ import javax.inject.Inject
 class GoogleBookRemoteDataSourceImpl @Inject constructor(private val googleBookApi: GoogleBookApi) :
     GoogleBookRemoteDataSource {
 
-    override fun getSearchBookResponse(q: String, startIndex: Int): Flow<GoogleBookResponse> =
-        flow { emit(googleBookApi.getSearchBooks(q = q, startIndex = startIndex)) }
+    override fun getSearchBookResponse(q: String, startIndex: Int,maxResult : Int): Flow<GoogleBookResponse> =
+        flow { emit(googleBookApi.getSearchBooks(q = q, startIndex = startIndex, maxResults = maxResult)) }
 }

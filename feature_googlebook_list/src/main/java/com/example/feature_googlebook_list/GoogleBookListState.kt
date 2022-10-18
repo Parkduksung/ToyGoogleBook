@@ -7,7 +7,7 @@ data class GoogleBookListUiState(
 )
 
 sealed interface SearchBookUiState {
+    object UnDefine : SearchBookUiState
     data class Success(val items: List<GoogleBookItem>) : SearchBookUiState
     object Error : SearchBookUiState
-    object Loading : SearchBookUiState
 }

@@ -13,7 +13,7 @@ private interface RetrofitGoogleBookNetworkApi {
     @GET(GoogleBookApi.URL_SEARCH_BOOKS)
     suspend fun getMovieList(
         @Query("q") q: String,
-        @Query("maxResults") maxResults: Int = GoogleBookApi.DEFAULT_MAX_RESULTS,
+        @Query("maxResults") maxResults: Int,
         @Query("startIndex") startIndex: Int,
         @Query("projection") projection: String = GoogleBookApi.DEFAULT_PROJECTION
     ): GoogleBookResponse

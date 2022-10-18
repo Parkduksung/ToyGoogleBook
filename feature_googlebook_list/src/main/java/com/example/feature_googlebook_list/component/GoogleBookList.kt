@@ -1,6 +1,5 @@
 package com.example.feature_googlebook_list.component
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,35 +21,32 @@ fun SearchBookListScreen(
 
     val listState = rememberLazyListState()
 
-    when(searchBookUiState){
 
-        SearchBookUiState.Loading -> {
 
-        }
+    when (searchBookUiState) {
 
+        is SearchBookUiState.UnDefine->{}
         is SearchBookUiState.Success -> {
-
             LazyColumn(
                 state = listState,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp)
             ) {
-
                 items(searchBookUiState.items) { item: GoogleBookItem ->
                     GoogleBookItem(item)
-//                    TextScreen(item, onItemClick = viewModel::removeTextItem)
                 }
             }
         }
 
         is SearchBookUiState.Error -> {
-
+            //todo
         }
     }
 
+
+
     if (listState.isScrolledToTheEnd()) {
-        Log.d("결과", "여기탐?")
-//        viewModel.searchBook()
+        viewModel.nextPage()
     }
 }

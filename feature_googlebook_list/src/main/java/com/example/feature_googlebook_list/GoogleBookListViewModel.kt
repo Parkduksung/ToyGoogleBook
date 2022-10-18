@@ -1,8 +1,10 @@
 package com.example.feature_googlebook_list
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.core_common.constant.DEFAULT_MAX_RESULTS
 import com.example.core_common.result.Result
 import com.example.core_common.result.asResult
 import com.example.core_data.repo.GoogleBookRepository
@@ -24,14 +26,17 @@ class GoogleBookListViewModel @Inject constructor(private val googleBookReposito
     private val _inputState = mutableStateOf("")
     val inputState: State<String> = _inputState
 
+
     private val getSearchBook = { query: String, startIndex: Int ->
-        googleBookRepository.getSearchBookResponse(query, startIndex).asResult()
+        googleBookRepository.getSearchBookResponse(query, startIndex, DEFAULT_MAX_RESULTS)
+            .asResult()
     }
 
-    private val _uiState = mutableStateOf(GoogleBookListUiState(SearchBookUiState.Loading))
+    private val _uiState = mutableStateOf(GoogleBookListUiState(SearchBookUiState.UnDefine))
     val uiState: State<GoogleBookListUiState> = _uiState
 
     private var startIndex = 1
+    private var isEndPosition = false
 
     private fun getBookSearch(query: String, startInt: Int) {
         getSearchBook(query, startInt).onEach { result ->
@@ -43,16 +48,17 @@ class GoogleBookListViewModel @Inject constructor(private val googleBookReposito
                     }
                     googleBookLinkedHashMap.putAll(toGoogleBookItem)
 
+                    Log.d("결과", googleBookLinkedHashMap.size.toString())
+
                     _uiState.value = _uiState.value.copy(
                         searchBookState = SearchBookUiState.Success(googleBookLinkedHashMap.map { it.value })
                     )
+                    isEndPosition = false
                 }
                 is Result.Error -> {
 
                 }
-                else -> {
-
-                }
+                Result.Loading -> {}
             }
         }.launchIn(CoroutineScope(Dispatchers.IO))
     }
@@ -68,9 +74,23 @@ class GoogleBookListViewModel @Inject constructor(private val googleBookReposito
         }
     }
 
+    /**
+     * @see DEFAULT_MAX_RESULTS
+     */
+    fun nextPage() {
+        if (!isEndPosition) {
+            isEndPosition = true
+
+            if (googleBookLinkedHashMap.isNotEmpty()) {
+                startIndex += DEFAULT_MAX_RESULTS
+                getBookSearch(_inputState.value, startIndex)
+            }
+        }
+    }
 
     private fun clear() {
         startIndex = 1
         googleBookLinkedHashMap.clear()
+        isEndPosition = false
     }
 }

@@ -15,7 +15,7 @@ class GoogleBookRepositoryImpl @Inject constructor(private val googleBookRemoteD
 
     override suspend fun getSearchBookItem(
         q: String,
-        startIndex: Int
+        startIndex: Int,
     ): Flow<Result<List<GoogleBookItem>>> = flow {
         try {
 
@@ -39,8 +39,12 @@ class GoogleBookRepositoryImpl @Inject constructor(private val googleBookRemoteD
         bookLinkedHashMap.clear()
     }
 
-    override fun getSearchBookResponse(q: String, startIndex: Int): Flow<GoogleBookResponse> =
-        googleBookRemoteDataSource.getSearchBookResponse(q, startIndex)
+    override fun getSearchBookResponse(
+        q: String,
+        startIndex: Int,
+        maxResult: Int,
+    ): Flow<GoogleBookResponse> =
+        googleBookRemoteDataSource.getSearchBookResponse(q, startIndex, maxResult)
 
 
 }
