@@ -1,5 +1,7 @@
 package com.example.feature_googlebook_list.component
 
+import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -11,18 +13,24 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import com.example.core_model.GoogleBookItem
+import com.google.gson.Gson
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
 
 @Composable
-fun GoogleBookItem(
-    item: GoogleBookItem
+fun GoogleBookItemScreen(
+    item: GoogleBookItem,
+    onItemClick: (String) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(150.dp)
-            .padding(20.dp),
+            .padding(20.dp)
+            .clickable {
+                val toJson = Uri.encode(Gson().toJson(item))
+                onItemClick(toJson)
+            },
         horizontalArrangement = Arrangement.Start
     ) {
         CoilImage(

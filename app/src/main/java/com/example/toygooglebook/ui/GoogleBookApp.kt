@@ -16,12 +16,13 @@ fun GoogleBookApp() {
 
         val navController = rememberNavController()
 
+
+
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
             GoogleBookNavigation(
-                modifier = Modifier,
                 navHostController = navController
             )
         }

@@ -2,6 +2,7 @@ import com.example.toygooglebook.configureKotlinAndroid
 
 plugins{
     id("com.android.library")
+    id("kotlin-parcelize")
     kotlin("android")
 }
 

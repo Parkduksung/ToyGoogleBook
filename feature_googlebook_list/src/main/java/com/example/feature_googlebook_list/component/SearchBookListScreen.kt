@@ -16,7 +16,8 @@ import com.example.feature_googlebook_list.isScrolledToTheEnd
 @Composable
 fun SearchBookListScreen(
     viewModel: GoogleBookListViewModel,
-    searchBookUiState: SearchBookUiState
+    searchBookUiState: SearchBookUiState,
+    onItemClick: (String) -> Unit
 ) {
 
     val listState = rememberLazyListState()
@@ -31,17 +32,17 @@ fun SearchBookListScreen(
                     .padding(10.dp)
             ) {
                 items(searchBookUiState.items) { item: GoogleBookItem ->
-                    GoogleBookItem(item)
+                    GoogleBookItemScreen(item, onItemClick)
                 }
             }
         }
 
         is SearchBookUiState.Error -> {
-            CommonMessageBox("예기치 못한 에러가 발생하였습니다.")
+            CommonMessageBoxScreen("예기치 못한 에러가 발생하였습니다.")
         }
 
         is SearchBookUiState.NotSearch -> {
-            CommonMessageBox("검색 결과가 없습니다.")
+            CommonMessageBoxScreen("검색 결과가 없습니다.")
         }
     }
 

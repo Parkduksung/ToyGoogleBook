@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.example.feature_googlebook_list.GoogleBookListViewModel
 
 @Composable
-fun InputFiled(viewModel: GoogleBookListViewModel) {
+fun InputFiledScreen(viewModel: GoogleBookListViewModel) {
 
     val input = viewModel.inputState.value
 

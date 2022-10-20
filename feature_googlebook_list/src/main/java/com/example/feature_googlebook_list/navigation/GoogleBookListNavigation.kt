@@ -11,9 +11,13 @@ object GoogleBookListNavigation : NavigationDestination {
 }
 
 
-fun NavGraphBuilder.googleBookListGraph() {
+fun NavGraphBuilder.googleBookListGraph(
+    navigationToGoogleBookDetail: (String) -> Unit
+) {
 
     composable(route = GoogleBookListNavigation.route) {
-        GoogleBookListScreen()
+        GoogleBookListScreen(
+            navigationToGoogleBookDetail = navigationToGoogleBookDetail
+        )
     }
 }

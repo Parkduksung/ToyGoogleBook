@@ -3,6 +3,7 @@ package com.example.feature_googlebook_list
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.core_common.CommonUiState
 import com.example.core_common.constant.DEFAULT_MAX_RESULTS
 import com.example.core_common.result.Result
 import com.example.core_common.result.asResult

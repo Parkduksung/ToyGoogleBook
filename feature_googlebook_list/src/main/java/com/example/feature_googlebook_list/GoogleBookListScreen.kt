@@ -9,20 +9,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.feature_googlebook_list.component.CommonUiScreen
-import com.example.feature_googlebook_list.component.InputFiled
+import com.example.feature_googlebook_list.component.InputFiledScreen
 import com.example.feature_googlebook_list.component.SearchBookListScreen
 
 @Composable
 fun GoogleBookListScreen(
-    viewModel: GoogleBookListViewModel = hiltViewModel()
+    viewModel: GoogleBookListViewModel = hiltViewModel(),
+    navigationToGoogleBookDetail: (String) -> Unit
 ) {
 
     val uiState = viewModel.uiState.value
 
     Box(Modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
-            InputFiled(viewModel)
-            SearchBookListScreen(viewModel = viewModel, uiState.searchBookState)
+            InputFiledScreen(viewModel)
+            SearchBookListScreen(
+                viewModel = viewModel,
+                uiState.searchBookState,
+                navigationToGoogleBookDetail
+            )
         }
         CommonUiScreen(
             modifier = Modifier.align(Alignment.Center),

@@ -11,7 +11,6 @@ dependencies {
     implementation(project(":core-common"))
     implementation(project(":core-navigation"))
     implementation(project(":core-model"))
-    implementation(project(":core-data"))
 
     implementation(libs.kotlinx.coroutines.android)
 
@@ -27,4 +26,5 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     implementation(libs.retrofit.gson)
+
 }

@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun CommonMessageBox(message: String) {
+fun CommonMessageBoxScreen(message: String) {
     Box(modifier = Modifier.fillMaxSize()) {
         Text(text = message, modifier = Modifier.align(Alignment.Center))
     }
