@@ -5,6 +5,12 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+android {
+    defaultConfig {
+        testInstrumentationRunner = "com.example.core_testing.AppTestRunner"
+    }
+}
+
 
 dependencies {
     implementation(project(":core-ui"))
@@ -12,6 +18,8 @@ dependencies {
     implementation(project(":core-navigation"))
     implementation(project(":core-model"))
     implementation(project(":core-data"))
+    implementation(project(":core-data-test"))
+    implementation(project(":core-testing"))
 
     implementation(libs.kotlinx.coroutines.android)
 
@@ -25,6 +33,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    api(libs.hilt.android.testing)
 
     implementation(libs.retrofit.gson)
 }

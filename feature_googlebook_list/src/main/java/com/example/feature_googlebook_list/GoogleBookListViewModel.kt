@@ -27,7 +27,6 @@ class GoogleBookListViewModel @Inject constructor(private val googleBookReposito
     private var startIndex = 1
     private var isEndPosition = AtomicBoolean(false)
 
-
     private val _uiState = mutableStateOf(
         GoogleBookListUiState(
             commonUiState = CommonUiState.HideLoading,
@@ -40,7 +39,7 @@ class GoogleBookListViewModel @Inject constructor(private val googleBookReposito
     val inputState: State<String> = _inputState
 
     private val getSearchBook = { query: String, startIndex: Int ->
-        googleBookRepository.getSearchBookResponse(query, startIndex, DEFAULT_MAX_RESULTS)
+        googleBookRepository.getSearchBook(query, startIndex, DEFAULT_MAX_RESULTS)
             .asResult()
     }
 
