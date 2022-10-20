@@ -21,11 +21,8 @@ fun SearchBookListScreen(
 
     val listState = rememberLazyListState()
 
-
-
     when (searchBookUiState) {
-
-        is SearchBookUiState.UnDefine->{}
+        is SearchBookUiState.Idle -> {}
         is SearchBookUiState.Success -> {
             LazyColumn(
                 state = listState,
@@ -40,7 +37,11 @@ fun SearchBookListScreen(
         }
 
         is SearchBookUiState.Error -> {
-            //todo
+            CommonMessageBox("예기치 못한 에러가 발생하였습니다.")
+        }
+
+        is SearchBookUiState.NotSearch -> {
+            CommonMessageBox("검색 결과가 없습니다.")
         }
     }
 
@@ -50,3 +51,4 @@ fun SearchBookListScreen(
         viewModel.nextPage()
     }
 }
+
