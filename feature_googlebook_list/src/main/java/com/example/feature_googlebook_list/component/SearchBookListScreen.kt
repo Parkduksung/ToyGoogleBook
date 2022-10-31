@@ -50,6 +50,8 @@ fun SearchBookListScreen(
 
     if (listState.isScrolledToTheEnd()) {
         viewModel.nextPage()
+    }else{
+        viewModel.setIsEndPosition(false)
     }
 }
 

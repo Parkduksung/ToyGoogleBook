@@ -76,7 +76,7 @@ class GoogleBookListViewModel @Inject constructor(private val googleBookReposito
      */
     fun nextPage() {
         if (!isEndPosition.get()) {
-            isEndPosition.set(true)
+            setIsEndPosition(true)
             if (googleBookLinkedHashMap.isNotEmpty()) {
                 startIndex += DEFAULT_MAX_RESULTS
                 getBookSearch(_inputState.value, startIndex)
@@ -122,8 +122,12 @@ class GoogleBookListViewModel @Inject constructor(private val googleBookReposito
                     searchBookState = SearchBookUiState.Success(googleBookLinkedHashMap.map { it.value })
                 )
             )
-            isEndPosition.set(false)
         }
+    }
+
+
+    fun setIsEndPosition(isEnd: Boolean) {
+        isEndPosition.set(isEnd)
     }
 
     fun onInputChange(input: String) {
@@ -138,6 +142,6 @@ class GoogleBookListViewModel @Inject constructor(private val googleBookReposito
     private fun clear() {
         startIndex = 1
         googleBookLinkedHashMap.clear()
-        isEndPosition.set(false)
+        setIsEndPosition(false)
     }
 }
